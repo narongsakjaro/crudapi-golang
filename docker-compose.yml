@@ -1,0 +1,19 @@
+version: "3"
+services:
+  # Multistate build
+  multistage:
+    image: crud-api-golang:multistage
+    build:
+      context: .
+      dockerfile: ./docker/multistage.Dockerfile
+    ports:
+      - "8000:8000"
+  traditional:
+    image: crud-api-golang:traditional
+    build:
+      context: .
+      dockerfile: ./docker/traditional.Dockerfile
+    ports:
+      - "8001:8000"
+
+# docker build -t narongsakjaro/crudapi-golang -f multistage.Dockerfile .
